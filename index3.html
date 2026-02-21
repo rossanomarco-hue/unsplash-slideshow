@@ -25,19 +25,19 @@
 
 <script>
   const images = [
-    "foto1.jpg",
-    "foto2.jpg",
-    "foto3.jpg",
-    "foto4.jpg",
-    "foto5.jpg",
-    "foto6.jpg",
-    "foto7.jpg",
-    "foto8.jpg",
-    "foto9.jpg",
-    "foto10.jpg",
-    "foto11.jpg",
-    "foto12.jpg",
-    "foto13.jpg"
+    "images/foto1.jpg",
+    "images/foto2.jpg",
+    "images/foto3.jpg",
+    "images/foto4.jpg",
+    "images/foto5.jpg",
+    "images/foto6.jpg",
+    "images/foto7.jpg",
+    "images/foto8.jpg",
+    "images/foto9.jpg",
+    "images/foto10.jpg",
+    "images/foto11.jpg",
+    "images/foto12.jpg",
+    "images/foto13.jpg"
   ];
 
   const slide = document.getElementById("slide");
@@ -59,8 +59,11 @@
     }, 500);
   }
 
+  // Mostra subito un'immagine
   randomImage();
-  setInterval(randomImage, 60000); // cambia ogni 60 secondi
+
+  // Cambia immagine ogni 60 secondi
+  setInterval(randomImage, 60000);
 </script>
 
 </body>
