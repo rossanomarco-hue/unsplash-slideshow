@@ -1,51 +1,62 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Slideshow Fully Kiosk</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      background-color: black;
-      overflow: hidden;
-    }
-    #slideshow {
-      width: 100%;
-      height: 100%;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      transition: background-image 1s ease-in-out;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>My Personal Screensaver</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: opacity 1s ease-in-out;
+  }
+</style>
 </head>
 <body>
-  <div id="slideshow"></div>
 
-  <script>
-    // Lista di keyword per immagini casuali
-    const keywords = ["nature", "landscape", "city"];
-    const slideshow = document.getElementById("slideshow");
-    const interval = 10000; // tempo tra un'immagine e l'altra in ms (10 secondi)
+<img id="slide" src="images/foto1.jpg">
 
-    function getRandomKeyword() {
-      return keywords[Math.floor(Math.random() * keywords.length)];
-    }
+<script>
+  const images = [
+    "images/foto(1).jpg",
+    "images/foto(2).jpg",
+    "images/foto(3).jpg",
+    "images/foto(4).jpg",
+    "images/foto(5).jpg",
+    "images/foto(6).jpg",
+    "images/foto(7).jpg",
+    "images/foto(8).jpg",
+    "images/foto(9).jpg",
+    "images/foto(10).jpg",
+    "images/foto(11).jpg",
+    "images/foto(12).jpg",
+    "images/foto(13).jpg"  
+  ];
 
-    function loadImage() {
-      const keyword = getRandomKeyword();
-      const url = `https://source.unsplash.com/1920x1200/?${keyword}&sig=${Math.random()}`;
-      slideshow.style.backgroundImage = `url('${url}')`;
-    }
+  const slide = document.getElementById("slide");
 
-    // Carica la prima immagine subito
-    loadImage();
+  function randomImage() {
+    const index = Math.floor(Math.random() * images.length);
+    slide.style.opacity = 0;
+    setTimeout(() => {
+      slide.src = images[index];
+      slide.style.opacity = 1;
+    }, 500);
+  }
 
-    // Cambia immagine ogni intervallo
-    setInterval(loadImage, interval);
-  </script>
+  randomImage();
+  setInterval(randomImage, 60000); // cambia ogni 60 secondi
+</script>
+
 </body>
 </html>
