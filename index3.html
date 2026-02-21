@@ -1,51 +1,70 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Slideshow Fully Kiosk</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      background-color: black;
-      overflow: hidden;
-    }
-    #slideshow {
-      width: 100%;
-      height: 100%;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      transition: background-image 1s ease-in-out;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Personal Screensaver</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+  }
+
+  img {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    transition: opacity 1s ease-in-out;
+  }
+</style>
 </head>
 <body>
-  <div id="slideshow"></div>
 
-  <script>
-    // Lista di keyword per immagini casuali
-    const keywords = ["nature", "landscape", "city"];
-    const slideshow = document.getElementById("slideshow");
-    const interval = 10000; // tempo tra un'immagine e l'altra in ms (10 secondi)
+<img id="slide" src="">
 
-    function getRandomKeyword() {
-      return keywords[Math.floor(Math.random() * keywords.length)];
-    }
+<script>
+  const images = [
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto1.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto2.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto3.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto4.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto5.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto6.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto7.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto8.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto9.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto10.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto11.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto12.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto13.jpg"
+  ];
 
-    function loadImage() {
-      const keyword = getRandomKeyword();
-      const url = `https://source.unsplash.com/1920x1200/?${keyword}&sig=${Math.random()}`;
-      slideshow.style.backgroundImage = `url('${url}')`;
-    }
+  const slide = document.getElementById("slide");
+  let lastIndex = -1;
 
-    // Carica la prima immagine subito
-    loadImage();
+  function randomImage() {
+    let index;
+    do {
+      index = Math.floor(Math.random() * images.length);
+    } while (index === lastIndex);
 
-    // Cambia immagine ogni intervallo
-    setInterval(loadImage, interval);
-  </script>
+    lastIndex = index;
+
+    slide.style.opacity = 0;
+
+    setTimeout(() => {
+      slide.src = images[index];
+      slide.style.opacity = 1;
+    }, 500);
+  }
+
+  // Prima immagine subito
+  randomImage();
+
+  // Cambio ogni 60 secondi
+  setInterval(randomImage, 60000);
+</script>
+
 </body>
 </html>
