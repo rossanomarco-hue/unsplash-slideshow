@@ -2,21 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Personal Screensaver</title>
+<title>Personal Screensaver</title>
 <style>
   body {
     margin: 0;
     background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     overflow: hidden;
   }
+
   img {
     position: absolute;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
     transition: opacity 1s ease-in-out;
   }
@@ -24,30 +21,38 @@
 </head>
 <body>
 
-<img id="slide" src="images/foto1.jpg">
+<img id="slide" src="">
 
 <script>
   const images = [
-    "images/foto(1).jpg",
-    "images/foto(2).jpg",
-    "images/foto(3).jpg",
-    "images/foto(4).jpg",
-    "images/foto(5).jpg",
-    "images/foto(6).jpg",
-    "images/foto(7).jpg",
-    "images/foto(8).jpg",
-    "images/foto(9).jpg",
-    "images/foto(10).jpg",
-    "images/foto(11).jpg",
-    "images/foto(12).jpg",
-    "images/foto(13).jpg"  
+    "foto1.jpg",
+    "foto2.jpg",
+    "foto3.jpg",
+    "foto4.jpg",
+    "foto5.jpg",
+    "foto6.jpg",
+    "foto7.jpg",
+    "foto8.jpg",
+    "foto9.jpg",
+    "foto10.jpg",
+    "foto11.jpg",
+    "foto12.jpg",
+    "foto13.jpg"
   ];
 
   const slide = document.getElementById("slide");
+  let lastIndex = -1;
 
   function randomImage() {
-    const index = Math.floor(Math.random() * images.length);
+    let index;
+    do {
+      index = Math.floor(Math.random() * images.length);
+    } while (index === lastIndex);
+
+    lastIndex = index;
+
     slide.style.opacity = 0;
+
     setTimeout(() => {
       slide.src = images[index];
       slide.style.opacity = 1;
