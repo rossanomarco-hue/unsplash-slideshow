@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Personal Screensaver</title>
+<title>Mi Pad 3 Screensaver</title>
 <style>
   body {
     margin: 0;
@@ -10,12 +10,14 @@
     overflow: hidden;
   }
 
-  img {
+  #slide {
     position: absolute;
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    transform-origin: center center;
   }
 </style>
 </head>
@@ -25,19 +27,19 @@
 
 <script>
   const images = [
-    "images/foto_1.jpg",
-    "images/foto_2.jpg",
-    "images/foto_3.jpg",
-    "images/foto_4.jpg",
-    "images/foto_5.jpg",
-    "images/foto_6.jpg",
-    "images/foto_7.jpg",
-    "images/foto_8.jpg",
-    "images/foto_9.jpg",
-    "images/foto_10.jpg",
-    "images/foto_11.jpg",
-    "images/foto_12.jpg",
-    "images/foto_13.jpg"
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_1.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_2.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_3.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_4.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_5.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_6.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_7.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_8.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_9.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_10.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_11.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_12.jpg",
+    "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_13.jpg"
   ];
 
   const slide = document.getElementById("slide");
@@ -51,11 +53,18 @@
 
     lastIndex = index;
 
+    // Reset zoom
+    slide.style.transform = "scale(1)";
     slide.style.opacity = 0;
 
     setTimeout(() => {
       slide.src = images[index];
       slide.style.opacity = 1;
+
+      // Applica zoom lento
+      let scale = 1 + Math.random() * 0.05; // zoom tra 100% e 105%
+      slide.style.transition = "transform 60s linear, opacity 2s ease-in-out";
+      slide.style.transform = scale(${scale});
     }, 500);
   }
 
