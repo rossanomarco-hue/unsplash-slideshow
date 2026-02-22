@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Mi Pad 3 Screensaver</title>
+<title>Mi Pad Screensaver</title>
 <style>
   body {
     margin: 0;
@@ -10,22 +10,22 @@
     overflow: hidden;
   }
 
-  #slide {
-    position: absolute;
+  img {
+    position: fixed;
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 2s ease-in-out;
-    transform-origin: center center;
+    transition: opacity 1.5s ease-in-out;
   }
 </style>
 </head>
 <body>
 
-<img id="slide" src="">
+<img id="slide">
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+
   const images = [
     "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_1.jpg",
     "https://rossanomarco-hue.github.io/unsplash-slideshow/images/foto_2.jpg",
@@ -45,7 +45,7 @@
   const slide = document.getElementById("slide");
   let lastIndex = -1;
 
-  function randomImage() {
+  function changeImage() {
     let index;
     do {
       index = Math.floor(Math.random() * images.length);
@@ -53,26 +53,21 @@
 
     lastIndex = index;
 
-    // Reset zoom
-    slide.style.transform = "scale(1)";
     slide.style.opacity = 0;
 
     setTimeout(() => {
       slide.src = images[index];
       slide.style.opacity = 1;
-
-      // Applica zoom lento
-      let scale = 1 + Math.random() * 0.05; // zoom tra 100% e 105%
-      slide.style.transition = "transform 60s linear, opacity 2s ease-in-out";
-      slide.style.transform = scale(${scale});
-    }, 500);
+    }, 800);
   }
 
-  // Mostra subito un'immagine
-  randomImage();
+  // mostra subito la prima immagine
+  slide.src = images[0];
+  slide.style.opacity = 1;
 
-  // Cambia immagine ogni 60 secondi
-  setInterval(randomImage, 60000);
+  setInterval(changeImage, 60000);
+
+});
 </script>
 
 </body>
